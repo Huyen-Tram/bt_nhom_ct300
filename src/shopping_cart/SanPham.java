@@ -1,31 +1,36 @@
 package shopping_cart;
-
+import java.util.*;
 import java.io.Serializable;
 
 public class SanPham implements Serializable {
 	private int masp;
 	private String tensp;
-	private String donvitinh;
 	private int sltonkho;
-	private double dongia;
+	private int dongia;
 	
-	public  SanPham(int masp, String tensp, String donvitinh, int sltonkho, double dongia) {
+	public  SanPham(int masp, String tensp, int sltonkho, int dongia) {
 		this.masp = masp;
 		this.tensp = tensp;
 		this.dongia = dongia;
-		this.donvitinh = donvitinh;
+		this.sltonkho = sltonkho;
+		
+	
+	}
+	
+	
+	
+	public  SanPham(String tensp, int sltonkho, int dongia) {
+		
+		this.tensp = tensp;
+		this.dongia = dongia;
 		this.sltonkho = sltonkho;
 		
 	
 	}
 	public void print() {
-		System.out.println("---------------------------");
-		System.out.println(masp);
-		System.out.println(tensp);
-		System.out.println(donvitinh);
-		System.out.println(sltonkho);
-		System.out.println(dongia);
-		
+		System.out.format("|%-30d|%-30s|%-30d|%-30d|\n",masp,tensp,sltonkho,dongia);
+		System.out.println("----------------------------------------------------------------------------------------------------------------------------");
+
 	}
 	
 	public int GetMa() {
@@ -39,12 +44,9 @@ public class SanPham implements Serializable {
 	public int GetSL() {
 		return this.sltonkho;
 	}
+
 	
-	public String GetDonViTinh() {
-		return this.donvitinh;
-	}
-	
-	public double GetDonGia() {
+	public int GetDonGia() {
 		return this.dongia;
 	}
 

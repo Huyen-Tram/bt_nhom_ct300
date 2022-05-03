@@ -1,75 +1,114 @@
 package shopping_cart;
+import java.util.*;
 
-import java.util.ArrayList;
-import java.util.Scanner;
 
 public class app_shoppingcart {
 	
 	public static void main(String[] args) {
-		read_file f = new read_file();
-		ArrayList<SanPham> ds_sp = new ArrayList<SanPham>();
-		SanPham sp;
-		for(int i = 0; i < 5; i++) {
-			sp = new SanPham(i,"sach","quyen",100,100000);
-			ds_sp.add(sp);
-		}
-		f.ghiFile(ds_sp);
 		
-		ArrayList<SanPham> ds_sp2 = new ArrayList<SanPham>() ;
-		ds_sp2 = f.docFile();
-//		for(int i = 0; i < ds_sp2.size(); i++) {
-//			ds_sp2.get(i).print();
-//		}
-//		
 		controller ctrl = new controller();
-		int role;
-		int choice;
+		String role ;
+		String choice;
 
-		Scanner sc = new Scanner(System.in);
+		
+		ArrayList<chi_tiet_hoa_don> ds_chitiet = new ArrayList<chi_tiet_hoa_don>();
+
 		while(true) {
 			choice = ctrl.GetRole();
-			if(choice == 0) {
+			System.out.println(choice);
+			if(choice.equals("0")) {
 				System.out.println("dang thoat chuong trinh.....");
 				return;
 			}
 			else role = choice;
-			choice = 0;
-			
+			choice = "0";
+
 			
 			// chuc nang admin
-			if(role == 1) {
+			if(role.equals("1")) {
+				
 				while(true) {
 					choice = ctrl.admin();
-					
-					switch ( choice ) {
-				    case  0:
+				    
+				    if(choice.equals("0")) {
 				    	System.out.println("dang thoat chuong trinh.....");
 				        return;
-				    case  1:
-				        System.out.println("ds san pham.....");
-				        break;
-				    case  2:
-				        System.out.println("them san pham.....");
-				        break;
-				    case  3:
-				        System.out.println("sua san pham.....");
-				        break;
-				    case  4:
-				        System.out.println("xoa san pham.....");
-				        break;
-				    case  5:
-				        System.out.println("tro ve truoc.....");
-				        break;
-				    
-				    default:
-				    	
+				    }
+				    else if (choice.equals("1")) {
+				    	System.out.println("ds san pham.....");
+				        ctrl.in_ds_sp();
+					}
+				    else if (choice.equals("2")) {
+				    	System.out.println("them san pham.....");
+				        ctrl.admin_them();
+					}
+				    else if (choice.equals("3")) {
+				    	System.out.println("sua san pham.....");
+				    	ctrl.admin_sua_sp();
+					}
+				    else if (choice.equals("4")) {
+				    	System.out.println("xoa san pham.....");
+				    	ctrl.admin_xoa_sp();
+					}
+				    else if (choice.equals("5")) {
+				    	System.out.println("trở về.....");
+				    	break;
 					}
 					
-					
+				}
+			}
+			if(role.equals("2")) {
+				
+				while(true) {
+					choice = ctrl.user();
+				    
+				    if(choice.equals("0")) {
+				    	System.out.println("dang thoat chuong trinh.....");
+				        return;
+				    }
+				    else if (choice.equals("1")) {
+				    	System.out.println("ds san pham.....");
+				        ctrl.in_ds_sp();
+					}
+				    else if (choice.equals("2")) {
+				    	System.out.println("ds san pham trong gio hang.....");
+				        ctrl.xem_giohang(ds_chitiet);
+					}
+				    else if (choice.equals("3")) {
+				    	System.out.println("tim kiem san pham.....");
+				        ctrl.tim_kiem();
+					}
+				    else if (choice.equals("4")) {
+				    	System.out.println("them san pham vao gio hang.....");
+				    	chi_tiet_hoa_don chitiet = ctrl.them_sp_giohang();
+				    	if(chitiet != null) {
+				    		ds_chitiet.add(chitiet)  ;
+				    	}
+				    	ds_chitiet=ctrl.xem_giohang(ds_chitiet);
+				    	
+					}
+				    else if (choice.equals("5")) {
+				    	System.out.println("xoa san pham.....");
+				    	
+				    	ds_chitiet=ctrl.xoa_sp_giohang(ds_chitiet);
+					}
+				    else if (choice.equals("6")) {
+				    	System.out.println("thay doi so luong san pham");
+				    	ds_chitiet=ctrl.thaydoisl(ds_chitiet);
+					}
+				    else if (choice.equals("7")) {
+				    	System.out.println("thanh toan hoa don");
+				    	ctrl.thanh_toan(ds_chitiet);
+				    	ds_chitiet.clear();
+					}
+				    else if (choice.equals("8")) {
+				    	System.out.println("trở về.....");
+				    	break;
 				}
 			}
 		}
 	}
+}
 }
 	
 
