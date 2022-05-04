@@ -1,15 +1,21 @@
 package shoppingcart;
 
 
+
 /** tao tao class sanpham. */
 public class SanPham {
+  
+  /** tao tao class sanpham. */
   private int masp;
-  private String tensp;
+  /** tao tao class sanpham. */
   private int sltonkho;
+  /** tao tao class sanpham. */
   private int dongia;
-
+  /** tao tao class sanpham. */
+  private String tensp;
+  
   /** tao ham xay dung. */
-  public SanPham(int masp, String tensp, int sltonkho, int dongia) {
+  public SanPham(final int masp, final String tensp, final int sltonkho, final int dongia) {
     this.masp = masp;
     this.tensp = tensp;
     this.dongia = dongia;
@@ -18,7 +24,7 @@ public class SanPham {
   }
   
   /** tao ham xay dung. */
-  public SanPham(String tensp, int sltonkho, int dongia) {
+  public SanPham( final String tensp, final int sltonkho, final int dongia) {
     this.tensp = tensp;
     this.dongia = dongia;
     this.sltonkho = sltonkho;
@@ -27,27 +33,41 @@ public class SanPham {
   
   /** tao ham print. */
   public void print() {
-    System.out.format("|%-30d|%-30s|%-30d|%-30d|\n", masp, tensp, sltonkho,
-        dongia);
+    
+    System.out.format("|%-30d|%-30s|%-30d|%-30d|\n", masp, tensp, sltonkho,dongia);
     System.out.print("------------------------------------------------------");
     System.out.println("----------------------------------------------------------------------");
 
   }
 
-  public int getMa() {
+  public int getMasp() {
     return this.masp;
   }
-
-  public String getTen_sp() {
-    return this.tensp;
+  public void setMasp(final int masp) {
+    this.masp = masp;
   }
-
-  public int getSl() {
+  
+  public int getSltonkho() {
     return this.sltonkho;
   }
+  public void setSltonkho(final int sltonkho) {
+    this.sltonkho = sltonkho;
+  }
+
+  public String getTensp() {
+    return this.tensp;
+  }
+  public void setTensp(final String tensp) {
+    this.tensp = tensp;
+  }
+
 
   public int getDongia() {
     return this.dongia;
   }
+  public void setDongia(final int dongia) {
+    this.dongia = dongia;
+  }
+
 
 }

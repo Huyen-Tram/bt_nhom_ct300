@@ -8,13 +8,11 @@ public class AppShoppingCart {
 
   /** tao ham chitiethoadon. */
   public static void main(String[] args) {
-
+   
     Controller ctrl = new Controller();
+    ArrayList<Chitiethoadon> dschitiet = new ArrayList<Chitiethoadon>();
     String role;
     String choice;
-
-    ArrayList<Chitiethoadon> dschitiet = new ArrayList<Chitiethoadon>();
-
     while (true) {
       choice = ctrl.getRole();
       System.out.println(choice);

@@ -92,21 +92,21 @@ public class Controller {
     int id = sc.nextInt();
     SanPham sp = ad.tim_sp(id);
 
-    System.out.println("ten cu cua san pham la:" + sp.getTen_sp());
+    System.out.println("ten cu cua san pham la:" + sp.getTensp());
     System.out.println(
         "vui long nhap ten moi, neu khong thay doi, nhap -1 de bo qua!");
     sc.nextLine();
     String ten = sc.nextLine();
     if (ten.equals("-1")) {
-      ten = sp.getTen_sp();
+      ten = sp.getTensp();
     }
 
-    System.out.println("so luong cu cua san pham la:" + sp.getSl());
+    System.out.println("so luong cu cua san pham la:" + sp.getSltonkho());
     System.out.println(
         "vui long nhap ten moi, neu khong thay doi, nhap -1 de bo qua!");
     int soluong = sc.nextInt();
     if (soluong == -1) {
-      soluong = sp.getSl();
+      soluong = sp.getSltonkho();
     }
     System.out.println("don gia cu cua san pham la:" + sp.getDongia());
     System.out.println(
@@ -193,8 +193,8 @@ public class Controller {
     Sqluser user = new Sqluser();
     SanPham sp = user.tim_sp_id(idsp);
     if (sp != null) {
-      if (sp.getSl() < sl) {
-        sl = sp.getSl();
+      if (sp.getSltonkho() < sl) {
+        sl = sp.getSltonkho();
       }
       chitiet = new Chitiethoadon(sp, sl, sp.getDongia() * sl);
     }
@@ -209,8 +209,8 @@ public class Controller {
       if (dschitiet.size() > 1) {
         for (int i = 0; i < dschitiet.size() - 1; i++) {
           for (int j = i + 1; j < dschitiet.size(); j++) {
-            if (dschitiet.get(i).get_sp().getMa() == dschitiet.get(j).get_sp()
-                .getMa()) {
+            if (dschitiet.get(i).get_sp().getMasp() == dschitiet.get(j).get_sp()
+                .getMasp()) {
               dschitiet.get(i).set_sl(dschitiet.get(j).get_sl());
               dschitiet.get(i)
                   .set_tongtienchitiet(dschitiet.get(j).get_tongtienchitiet());
@@ -246,7 +246,7 @@ public class Controller {
     int id = sc.nextInt();
     int size = ds.size();
     for (int i = 0; i < ds.size(); i++) {
-      if (ds.get(i).get_sp().getMa() == id) {
+      if (ds.get(i).get_sp().getMasp() == id) {
         ds.remove(i);
       }
 
@@ -266,12 +266,12 @@ public class Controller {
     int id = sc.nextInt();
     int dasua = 0;
     for (int i = 0; i < ds.size(); i++) {
-      if (ds.get(i).get_sp().getMa() == id) {
+      if (ds.get(i).get_sp().getMasp() == id) {
         System.out.println("so luong cu la:" + ds.get(i).get_sl());
         System.out.println("nhap so luong moi la:");
         int sl = sc.nextInt();
-        if (ds.get(i).get_sp().getSl() < sl) {
-          sl = ds.get(i).get_sp().getSl();
+        if (ds.get(i).get_sp().getSltonkho() < sl) {
+          sl = ds.get(i).get_sp().getSltonkho();
         }
 
         ds.get(i).set_thaydoi(sl, ds.get(i).get_sp().getDongia());

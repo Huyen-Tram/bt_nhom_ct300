@@ -1,44 +1,62 @@
 package shoppingcart;
 
-import java.sql.Date;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Calendar;
+import java.util.Date;
 
 /** tao ham chitiethoadon. */
 public class Hoadon {
 
-  private int idnguoidung = 1;
-  private String ngaylap;
-  private int tongtienhoadon;
-  private ArrayList<Chitiethoadon> dschitiet;
 
+
+  /** tao ham chitiethoadon. */
+  private int idnguoidung = 1;
+  /** tao ham chitiethoadon. */
+  private String ngaylap;
+  /** tao ham chitiethoadon. */
+  private int tongtienhoadon;
+  /** tao ham chitiethoadon. */
+  private List<Chitiethoadon> dschitiet;
   
   /** tao ham chitiethoadon. */
-  public Hoadon(ArrayList<Chitiethoadon> ds) {
+  public Hoadon(final List<Chitiethoadon> danhsach) {
     this.idnguoidung = 1;
-    java.util.Date date = Calendar.getInstance().getTime();
-    DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+    final Date date = new Date();
+    final DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+    
     this.ngaylap = dateFormat.format(date);
-    for (int i = 0; i < ds.size(); i++) {
-      this.tongtienhoadon += ds.get(i).get_tongtienchitiet();
+    for (int i = 0; i < danhsach.size(); i++) {
+      this.tongtienhoadon += danhsach.get(i).get_tongtienchitiet();
     }
-    this.dschitiet = ds;
+    this.dschitiet = danhsach;
   }
   
   /** tao ham chitiethoadon. */
   public void print() {
-
-    for (int i = 0; i < dschitiet.size(); i++) {
+    for(final Chitiethoadon cthd : dschitiet) {
       System.out.format("|%-30s|%-30d|%-30d|\n",
-          dschitiet.get(i).get_sp().getTen_sp(), dschitiet.get(i).get_sl(),
-          dschitiet.get(i).get_tongtienchitiet());
-      System.out.print("---------------------------------------------");
-      System.out.println(
-          "-------------------------------------------------");
+           cthd.get_sp().getTensp(),
+           cthd.get_sl(),
+           cthd.get_tongtienchitiet()
+          );
     }
     System.out.println("tong so tien can thanh toan:" + tongtienhoadon);
     System.out.println("Cam on ban da mua hang!!!");
+  }
+
+  public int getTongtienhoadon() {
+    return this.tongtienhoadon;
+  }
+  public void setTongtienhoadon(final int tongtienhoadon) {
+    this.tongtienhoadon = tongtienhoadon;
+  }
+  public List<Chitiethoadon> getDschitiet() {
+    return this.dschitiet;
+  }
+  public void setDschitiet( List<Chitiethoadon> dschitiet) {
+    this.dschitiet = dschitiet ;
   }
 }

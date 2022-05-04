@@ -64,7 +64,7 @@ public class Sqladmin {
       stmt = conn.createStatement();
       stmt.executeUpdate(
           "insert sanpham (tensp, so_luong_ton_kho, don_gia) value ('"
-              + sp.getTen_sp() + "','" + sp.getSl() + "','" + sp.getDongia()
+              + sp.getTensp() + "','" + sp.getSltonkho() + "','" + sp.getDongia()
               + "');");
       System.out.println("da them sp thanh cong!!!!!!!!");
     } catch (SQLException ex) { // xử lý ngoại lệ
@@ -78,9 +78,9 @@ public class Sqladmin {
     try {
       stmt = conn.createStatement();
       // Update
-      String sqlUpdate = "UPDATE SanPham SET TENSP='" + sp.getTen_sp()
-          + "', SO_LUONG_TON_KHO='" + sp.getSl() + "', DON_GIA='"
-          + sp.getDongia() + "' where ID_SP=" + sp.getMa() + ";";
+      String sqlUpdate = "UPDATE SanPham SET TENSP='" + sp.getTensp()
+          + "', SO_LUONG_TON_KHO='" + sp.getSltonkho() + "', DON_GIA='"
+          + sp.getDongia() + "' where ID_SP=" + sp.getMasp() + ";";
       int id = stmt.executeUpdate(sqlUpdate);
 
       System.out.println("da sua sp thanh cong san pham co id la: " + id);

@@ -15,8 +15,8 @@ public class Chitiethoadon {
   
   /** tao ham print. */
   public void print() {
-    System.out.format("|%-30d|%-30s|%-30d|%-30d|%-30d|\n", sp.getMa(),
-        sp.getTen_sp(), soluong, sp.getDongia(), tongtienchitiet);
+    System.out.format("|%-30d|%-30s|%-30d|%-30d|%-30d|\n", sp.getMasp(),
+        sp.getTensp(), soluong, sp.getDongia(), tongtienchitiet);
     System.out.print("------------------------------------------------------");
     System.out.print("-------------------------------------");
     System.out.println("-----------------------------------------------------------------");

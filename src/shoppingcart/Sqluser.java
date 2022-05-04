@@ -82,9 +82,9 @@ public class Sqluser {
     try {
       stmt = conn.createStatement();
       // Update
-      String sqlUpdate = "UPDATE SanPham SET TENSP='" + sp.getTen_sp()
-          + "', SO_LUONG_TON_KHO='" + sp.getSl() + "', DON_GIA='"
-          + sp.getDongia() + "' where ID_SP=" + sp.getMa() + ";";
+      String sqlUpdate = "UPDATE SanPham SET TENSP='" + sp.getTensp()
+          + "', SO_LUONG_TON_KHO='" + sp.getSltonkho() + "', DON_GIA='"
+          + sp.getDongia() + "' where ID_SP=" + sp.getMasp() + ";";
       int id = stmt.executeUpdate(sqlUpdate);
 
       System.out.println("da sua sp thanh cong san pham co id la: " + id);
