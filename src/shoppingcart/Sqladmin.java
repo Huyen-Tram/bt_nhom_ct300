@@ -42,7 +42,7 @@ public class Sqladmin {
     try {
       // dùng phương thức executeQuery để yêu cầu thực hiện lệnh SQL
       stmt = conn.createStatement();
-      rs = stmt.executeQuery("SELECT * FROM sanpham where id_sp=" + id);
+      rs = stmt.executeQuery("SELECT * FROM sanpham where DAXOA is null and id_sp=" + id);
       while (rs.next()) {
 
         sp = new SanPham(rs.getInt("id_sp"), rs.getString("tenSp"),
@@ -59,16 +59,25 @@ public class Sqladmin {
   }
   
   /** tao ham chitiethoadon. */
-  public void add_sp(SanPham sp) {
+  public int add_sp(SanPham sp) {
     try {
       stmt = conn.createStatement();
-      stmt.executeUpdate(
+      int seccess = stmt.executeUpdate(
           "insert sanpham (tensp, so_luong_ton_kho, don_gia) value ('"
               + sp.getTen_sp() + "','" + sp.getSl() + "','" + sp.getDongia()
               + "');");
-      System.out.println("da them sp thanh cong!!!!!!!!");
+      if(seccess == 1) {
+        System.out.println("da them sp thanh cong!!!!!!!!");
+        return seccess;
+      }
+      else {
+        System.out.println("da them sp that bai!!!!!!!!");
+        return 0;
+      }
+      
     } catch (SQLException ex) { // xử lý ngoại lệ
       System.out.println("add_sp: " + ex.getMessage());
+      return 0;
     }
 
   }
@@ -81,9 +90,9 @@ public class Sqladmin {
       String sqlUpdate = "UPDATE SanPham SET TENSP='" + sp.getTen_sp()
           + "', SO_LUONG_TON_KHO='" + sp.getSl() + "', DON_GIA='"
           + sp.getDongia() + "' where ID_SP=" + sp.getMa() + ";";
-      int id = stmt.executeUpdate(sqlUpdate);
+      stmt.executeUpdate(sqlUpdate);
 
-      System.out.println("da sua sp thanh cong san pham co id la: " + id);
+      System.out.println("da sua sp thanh cong san pham co id la: " + sp.getMa());
 
     } catch (SQLException ex) {
       System.out.println("sua_sp: " + ex.getMessage());
@@ -91,18 +100,24 @@ public class Sqladmin {
   }
   
   /** tao ham chitiethoadon. */
-  public void xoa_sp(int idXoa) {
+  public int xoa_sp(int idXoa) {
     try {
       stmt = conn.createStatement();
       // Update
-      String sqlUpdate = "UPDATE SanPham SET DAXOA=" + true + " where ID_SP="
+      String sqlUpdate = "UPDATE SanPham SET DAXOA=" + true + " where DAXOA is null and ID_SP="
           + idXoa + ";";
-      stmt.executeUpdate(sqlUpdate);
-
-      System.out.println("da xoa sp thanh cong, san pham co id la: " + idXoa);
-
+      int success = stmt.executeUpdate(sqlUpdate);
+      if(success == 1) {
+        System.out.println("da xoa sp thanh cong, san pham co id la: " + idXoa);
+        return 1;
+      }
+      else {
+        System.out.println("xoa sp co id la: " + idXoa + " that bai!!!!");
+        return 0;
+      }
     } catch (SQLException ex) { // xử lý ngoại lệ
-      System.out.println("xoa_sp: " + ex.getMessage());
+        System.out.println("xoa_sp: " + ex.getMessage());
+        return 0;
     }
   }
 }
